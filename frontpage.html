@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>The Bored Button</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url(images/bored.jpeg);
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: "Cardo", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: beige;
+            padding: 20px;
+            width: 500px; 
+            height: 500px; 
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .picture {
+            background-image: url(images/button.jpg);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 25%;
+            width: 15%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .picture:hover {
+            transform: scale(1.1);
+        }
+
+        .text {
+            color: rgb(29, 29, 77);
+        }
+
+        .heading {
+            font-size: 60px;
+        }
+
+        .press-prompt {
+            font-size: 25px;
+            font-weight: 900;
+        }
+
+        .para {
+            font-size: 16px;
+            font-weight: 500;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="picture" id="boredButton"></div>
+        <div class="text">
+            <h1 class="heading">Bored?</h1>
+            <p class="press-prompt">Press the Bored Button.</p>
+            <p class="para">Bored, bored, the endless sigh,<br>
+                A vacant stare, a tearful eye.<br>
+                Bored of work, bored of play,<br>
+                A desperate soul, lost each day.<br>
+                <br>
+                But fear not, friend, relief is near,<br>
+                A magic button, crystal clear.<br>
+                One click, one tap, a joyful sound,<br>
+                A world of wonder, can be found.</p>
+        </div>
+    </div>
+    <script>
+        const games = ['guessceleb.php', 'program.php', 'life_checklist.php', 'billgates.php', 'tictactoe.php', 'letssettlethis.php'];
+        let remainingGames = [...games];
+
+        function redirectToRandomGame() {
+            const currentGame = window.location.pathname.split('/').pop();
+            const availableGames = remainingGames.filter(game => game !== currentGame);
+            if (availableGames.length === 0) {
+                remainingGames = games.filter(game => game !== currentGame);
+            }
+            const randomIndex = Math.floor(Math.random() * remainingGames.length);
+            const randomGame = remainingGames.splice(randomIndex, 1)[0];
+            window.location.href = randomGame;
+        }
+
+        document.getElementById('boredButton').addEventListener('click', redirectToRandomGame);
+    </script>
+</body>
+</html>
+
